@@ -1,20 +1,21 @@
 var config = {
-	host_url: "http://localhost:6284",		// mounted on this url
+	host_url: "https://YOUR_NAME.herokuapp.com",		// mounted on this url
 	base: "/",								// add a base url path. e.g: "/auth"
 	base_api: "/api",						// api base path
-	port: 6284,
-	// bind: "127.0.0.1",					// bind to an ip
+	port: process.env.PORT || 80,
+	//bind: "127.0.0.1",					// bind to an ip
 
-	debug: false,							// add stack trace & infos in errors
+	debug: true,							// add stack trace & infos in errors
 
 
 	staticsalt: 'i m a random string, change me.',
 	publicsalt: 'i m another random string, change me.',
 
+	// see https://github.com/pmstss/heroku-oauthd/blob/master/README.md to fill this block
 	redis: {
-		port: 6379,
-		host: '127.0.0.1',
-		// password: '...my redis password...',
+		port: 9019,	// YOUR_REDIS_PORT
+		host: 'YOUR_REDIS_HOST',
+		password: 'YOUR_REDIS_PASSWORD'
 		// database: ...0~15...
 		// options: {...other options...}
 	},
@@ -45,5 +46,7 @@ try {
 	}
 } catch (e) {
 }
+
+console.log('using config: %s', JSON.stringify(config));
 
 module.exports = config;
