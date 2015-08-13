@@ -1,7 +1,8 @@
 ## heroku-oauthd
 
-**heroku-oauthd** is customized preconfigured [oauthd](https://github.com/oauth-io/oauthd) instance for using at [Heroku](https://heroku.com).
-It took for me almost a day to get it running and I'm glad to share expierence.
+**heroku-oauthd** is customized preconfigured [oauthd](https://github.com/oauth-io/oauthd) instance for using at [Heroku](https://heroku.com).  
+It took for me almost a day to get it running and I'm glad to share expierence.  
+You do not need own oauthd heroku instance and things are much more easier if available [oauth-io plans](https://oauth.io/home/pricing) are suitable for you.
 
 ### Differences from original oauthd:
 - includes necessary 'postinstall' and 'start' scripts config in package.json: 'postinstall' runs grunt, 'start' starts the app. See details [here](https://devcenter.heroku.com/articles/node-with-grunt)
@@ -25,6 +26,7 @@ Checking out files: 100% (12015/12015), done.
 
 λ cd heroku-oauthd
 ```  
+
 **2. Create heroku instance:**  
 Note: If you don't have heroku account, start with [toolbelt](https://toolbelt.heroku.com/).
 ```sh 
@@ -43,6 +45,7 @@ heroku  https://git.heroku.com/heroku-oauthd-sample.git (push)
 origin  https://github.com/pmstss/heroku-oauthd (fetch)
 origin  https://github.com/pmstss/heroku-oauthd (push)
 ```  
+
 **3. Add Redis addon to you heroku instance:**
 ```sh 
 λ heroku addons:create heroku-redis:hobby-dev
@@ -53,6 +56,7 @@ Instance has been created and will be available shortly
 Use `heroku addons:docs heroku-redis` to view documentation.
 ```   
 'hobby-dev' above is name of free of charge plan. To get another plans info visit [redis addon page](https://elements.heroku.com/addons/heroku-redis).  
+
 **4. Edit config.js: configure host**  
 In step 2 'heroku-oauthd-sample' was specified as desired name, so host url is https://heroku-oauthd-sample.herokuapp.com:
 ```javascript 
@@ -60,12 +64,14 @@ var config = {
 	host_url: "https://heroku-oauthd-sample.herokuapp.com",		// mounted on this url
 	...
 ```  
+
 **5. Get your redis url**   
 REDIS_URL is part of heroku config, you can get it by running:
 ```sh 
 λ heroku config | grep REDIS
 REDIS_URL: redis://h:p8pmadbcsou38p0hfp4z7hk2ut@ec2-54-83-205-42.compute-1.amazonaws.com:9742
 ```  
+
 **6. Edit config.js - configure redis parameters**  
 For the given REDIS_URL redis parameters in config.js should look like ('h' - database name - is not used):
 ```javascript 
@@ -78,15 +84,16 @@ For the given REDIS_URL redis parameters in config.js should look like ('h' - da
 		// options: {...other options...}
 	},
 	...
-```  
+``` 
+
 **7. Commit your changes:**  
 ```sh
 λ git commit -a -m "configuration"
 [master 2960461] configuration
  1 file changed, 4 insertions(+), 4 deletions(-)
 ```  
+
 **8. Deploy to heroku by pushing changes to heroku repo:**  
-Beside push related messages you will see grunt build:
 ```sh
 λ git push heroku master
 Counting objects: 10570, done.
@@ -96,7 +103,17 @@ Writing objects: 100% (10570/10570), 24.80 MiB | 78.00 KiB/s, done.
 Total 10570 (delta 3505), reused 10553 (delta 3498)
 remote: Compressing source files... done.
 remote: Building source: 
+<see http://pastebin.com/GXWdhyEN>
 ```
+Beside push related messages you will see grunt build, which is large enough; full log is available at [pastebin](http://pastebin.com/GXWdhyEN).  
+
+**9. Open your own heroku oauthd instance:**  
+With the name given in step 2 url will be: https://heroku-oauthd-sample.herokuapp.com/login  
+You will see login/password dialog. **Important**: for the first opening it works like registration, i.e. you can enter any email/password that you will use further for login.  
+
+**10. Enjoy your own oauthd heroku instance!**  
+For configuring apps and providers have a look at [oauth.io documentation](https://oauth.io/docs).
+
 ### Copyright
 #### oauthd
 Copyright (C) 2015 Webshell SAS 
