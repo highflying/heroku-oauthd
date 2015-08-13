@@ -10,8 +10,8 @@ _Sidenote: also installing plugins doesn't work on Windows, e.g. see [line 45 of
 - plugins includes their node_modules folder, because submodule grunt build doesn't work out-of-box (perhaps this could be easily improved later)
 - config.json contains proper port for heroku
 
-### Starting your own oauthd instance at heroku:
-1. **Clone the repo and go to its dir:**
+### Starting your own oauthd instance at heroku:  
+**1. Clone the repo and go to its dir:**
 ```sh 
 λ git clone https://github.com/pmstss/heroku-oauthd
 Cloning into 'heroku-oauthd'...
@@ -24,8 +24,8 @@ Checking connectivity... done.
 Checking out files: 100% (12015/12015), done.
 
 λ cd heroku-oauthd
-```
-2. **Create heroku instance:**  
+```  
+**2. Create heroku instance:**  
 Note: If you don't have heroku account, start with [toolbelt](https://toolbelt.heroku.com/).
 ```sh 
 λ heroku create heroku-oauthd-sample
@@ -42,8 +42,8 @@ heroku  https://git.heroku.com/heroku-oauthd-sample.git (fetch)
 heroku  https://git.heroku.com/heroku-oauthd-sample.git (push)
 origin  https://github.com/pmstss/heroku-oauthd (fetch)
 origin  https://github.com/pmstss/heroku-oauthd (push)
-```
-3. **Add Redis addon to you heroku instance:**
+```  
+**3. Add Redis addon to you heroku instance:**
 ```sh 
 λ heroku addons:create heroku-redis:hobby-dev
 Creating giving-fleetingly-1820... done, (free)
@@ -52,21 +52,21 @@ Setting REDIS_URL and restarting heroku-oauthd-sample... done, v3
 Instance has been created and will be available shortly
 Use `heroku addons:docs heroku-redis` to view documentation.
 ```   
-'hobby-dev' above is name of free of charge plan. To get another plans info visit [redis addon page](https://elements.heroku.com/addons/heroku-redis).
-4. **Edit config.js: configure host**  
+'hobby-dev' above is name of free of charge plan. To get another plans info visit [redis addon page](https://elements.heroku.com/addons/heroku-redis).  
+**4. Edit config.js: configure host**  
 In step 2 'heroku-oauthd-sample' was specified as desired name, so host url is https://heroku-oauthd-sample.herokuapp.com:
 ```javascript 
 var config = {
 	host_url: "https://heroku-oauthd-sample.herokuapp.com",		// mounted on this url
 	...
-```
-5. **Get your redis url**   
+```  
+**5. Get your redis url**   
 REDIS_URL is part of heroku config, you can get it by running:
 ```sh 
 λ heroku config | grep REDIS
 REDIS_URL: redis://h:p8pmadbcsou38p0hfp4z7hk2ut@ec2-54-83-205-42.compute-1.amazonaws.com:9742
-```
-6. **Edit config.js - configure redis parameters**  
+```  
+**6. Edit config.js - configure redis parameters**  
 For the given REDIS_URL redis parameters in config.js should look like ('h' - database name - is not used):
 ```javascript 
     ...
@@ -78,14 +78,14 @@ For the given REDIS_URL redis parameters in config.js should look like ('h' - da
 		// options: {...other options...}
 	},
 	...
-```
-7. **Commit your changes:**  
+```  
+**7. Commit your changes:**  
 ```sh
 λ git commit -a -m "configuration"
 [master 2960461] configuration
  1 file changed, 4 insertions(+), 4 deletions(-)
-```
-8. ** Deploy to heroku by pushing changes to heroku repo:**  
+```  
+** 8. Deploy to heroku by pushing changes to heroku repo:**  
 Beside push related messages you will see grunt build:
 ```sh
 λ git push heroku master
