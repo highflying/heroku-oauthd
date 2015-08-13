@@ -85,7 +85,7 @@ For the given REDIS_URL redis parameters in config.js should look like ('h' - da
 [master 2960461] configuration
  1 file changed, 4 insertions(+), 4 deletions(-)
 ```  
-** 8. Deploy to heroku by pushing changes to heroku repo:**  
+**8. Deploy to heroku by pushing changes to heroku repo:**  
 Beside push related messages you will see grunt build:
 ```sh
 λ git push heroku master
