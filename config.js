@@ -1,5 +1,5 @@
 var config = {
-	host_url: "https://YOUR_NAME.herokuapp.com",		// mounted on this url
+	host_url: "https://luna-oauthd.herokuapp.com",		// mounted on this url
 	base: "/",								// add a base url path. e.g: "/auth"
 	base_api: "/api",						// api base path
 	port: process.env.PORT || 80,
