@@ -26,7 +26,7 @@ var config = {
 };
 
 if (process.env.REDIS_URL) {
-  var redis_conf = process.env.REDIS_URL.match(/redis:\/\/(.+):(.+)@(.+):(.+)\//);
+  var redis_conf = process.env.REDIS_URL.match(/redis:\/\/(.+):(.+)@(.+):(.+)/);
   config.redis = {
     port:     redis_conf[4],
     host:     redis_conf[3],
