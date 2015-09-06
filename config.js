@@ -25,6 +25,16 @@ var config = {
 	]
 };
 
+if (process.env.REDIS_URL) {
+  var redis_conf = process.env.REDIS_URL.match(/redis:\/\/(.+):(.+)@(.+):(.+)\//);
+  config.redis = {
+    port:     redis_conf[4],
+    host:     redis_conf[3],
+    password: redis_conf[2],
+    database: redis_conf[1],
+  };
+}
+
 try {
 	if (__dirname != process.cwd()) {
 		var instance_config = require(process.cwd() + '/config.js');
