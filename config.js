@@ -31,7 +31,8 @@ if (process.env.REDIS_URL) {
     port:     redis_conf[4],
     host:     redis_conf[3],
     password: redis_conf[2],
-    database: redis_conf[1],
+// not used with REDIS_URL
+//    database: redis_conf[1],
   };
 }
 
